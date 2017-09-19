@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			#gift{
+				width: 500px;
+				height: 400px;
+				margin: auto;
+				background-size: cover;
+			}
+			#btn{
+				width: 70px;
+				height: 50px;
+				margin: auto;
+				position: absolute;
+				left: 50px;
+				bottom: 0px;
+				top: 300px;
+				right: 0px;
+			}
+			body{
+				background-color: ghostwhite;
+			}
+		</style>
+	</head>
+
+	<body>
+		
+		<div id="gift"></div>
+		<button id="btn">抽奖</button>
+		<script type="text/javascript">
+			var num = 0;
+		var sStr="0.jpg|1.jpg|2.jpg|3.jpg|4.jpg";
+		var aStr=sStr.split("|");
+		var ogift=document.getElementById('gift');
+		var obtn=document.getElementById('btn');
+		var oword=document.getElementById('word');
+		gift.style.backgroundImage="url(img/"+aStr[num]+")";
+		btn.onclick = function(){
+			num=parseInt(Math.random()*4); 			
+			gift.style.backgroundImage="url(img/"+aStr[num]+")";
+		}
+		
+		</script>
+	</body>
+
+</html>
