@@ -1,0 +1,122 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+#chat {
+	width: 500px;
+	height: 600px;
+	border: 1px solid #000;
+	left: 400px;
+	top: 20px;
+	position: absolute;
+	border-radius: 0px 0px 15px 15px;
+	
+}
+
+#name {
+	width: 500px;
+	height: 60px;
+	background-color: blue;
+	position: relative;
+	top: 0;
+}
+
+#name div {
+	display: inline-block;
+}
+i{
+	padding: 5px;
+}
+#logo1 {
+	width: 60px;
+	height: 35px;
+	font-size: 1.5em;
+	position: absolute;
+	bottom: 10px;
+	left: 20px;
+	border-right: 1px solid darkblue;
+}
+#logo2 {
+	font-size: 1.5em;
+	margin-left: 50px;
+	bottom: 10px;
+	right: 20px;
+	position: absolute;
+}
+
+#other {
+	margin-left: 68px;
+	position: absolute;
+	left: 100px;
+}
+
+#name h1 {
+	text-align: center;
+	line-height: 60px;
+}
+
+#name span {
+	font-size: 15px;
+	color: darkgrey;
+}
+
+#send {
+	width: 500px;
+	height: 90px;
+	background-color: lightgray;
+	position: relative;
+	bottom: 0;
+	border-radius: 0px 0px 15px 15px;
+}
+
+#Content {
+	width: 500px;
+	height: 450px;
+	position: relative;
+	overflow: scroll;
+	background: url(../img/002.jpeg);
+	background-size: 100%;
+}
+
+#Content .list {
+	height:auto;
+	border-radius: 5px;
+	background-color: greenyellow;
+	border: 1px solid #000;
+	text-align: left;
+	/*word-wrap: break-word;*/
+}
+#Content .list1 {
+	text-align: center;
+}
+
+#send #text1 {
+	margin-left: 20px;
+	margin-top: 20px;
+	width: 300px;
+	height: 50px;
+	border-radius: 15px 15px 15px 15px;
+	border: none;
+	
+}
+#btn {
+	width: 40px;
+	height: 40px;
+	border-radius: 5px 5px 5px 5px;
+	background-color: limegreen;
+	margin-left: 20px;
+}
+#send i{
+	position: absolute;
+	width: 60px;
+	height: 35px;
+	font-size: 2em;
+	top: 27px;
+}
+#logo3{
+	right: 30px;
+	
+}
+#logo4{
+	right: -20px;
+}
