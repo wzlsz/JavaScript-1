@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>放大镜</title>
+		<style type="text/css">
+			* {
+				box-sizing: border-box;
+			}
+			
+			body {
+				background-color: gray;
+				background: url(img/002.jpg);
+				background-size: 100%;
+			}
+			
+			.image {
+				width: 500px;
+				overflow: hidden;
+				margin: 170px auto 0px;
+				position: relative;
+				box-shadow: 0 0 3px rgba(0, 0, 0, 1);
+				border: solid 2px #fff;
+			}
+			
+			.image img {
+				width: 100%;
+				height: auto;
+				cursor: pointer;
+				vertical-align: middle
+			}
+			.image:hover img{
+				opacity: 0.8;
+			}
+			.zoomer {
+				position: absolute;
+				width: 100px;
+				height: 100px;
+				left: 0;
+				top: 0;
+				margin: -50px 0 0 -50px;
+				background-repeat: no-repeat;
+				border-radius: 50%;
+				opacity: 0;
+				box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  				border: solid 2px #fff;
+				transform: scale(0);
+				transition: transform .3s, alpha .3s;
+				pointer-events: none;
+			}
+			
+			.image:hover .zoomer {
+				transform: scale(1);
+				opacity: 1;
+			}
+			
+			#text {
+				width: 150px;
+				height: 50px;
+				text-align: center;
+				margin:10px auto;
+			}
+		</style>
+	</head>
+
+	<body>
+		<figure class="image">
+			<img src="img/001.jpeg" />
+			<div class="zoomer"></div>
+		</figure>
+		<div id="text"></div>
+		<script type="text/javascript">
+			var Image = document.querySelector('.image');
+			var Zoomer = Image.querySelector('.zoomer');
+			var img = Image.querySelector('img');
+			var ration;
+			var text = document.getElementById("text");
+			img.addEventListener("load", onload);
+			img.addEventListener("mousemove", onMousemove);
+
+			function onMousemove() {
+				Itop = event.offsetY || event.layerY;
+				Ileft = event.offsetX || event.layerX;
+				Zoomer.style.top = Itop + "px";
+				Zoomer.style.left = Ileft + "px";
+				Zoomer.style.backgroundPosition = (-Ileft * ration + 50) + "px " + (-Itop * ration + 50) + "px ";
+				text.innerHTML = "(" + parseInt((Ileft * ration + 50)) + "px " + "," + parseInt((Itop * ration + 50)) + "px " + ")";
+			}
+
+			function onload() {
+				ration = img.naturalWidth / img.width;
+				Zoomer.style.backgroundImage = "url(img/001.jpeg)";
+			}
+		</script>
+	</body>
+
+</html>
