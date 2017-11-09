@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<title></title>
+		<meta http-equiv="content-type" content="text/html;charset=gb2312">
+		<!--把下面代码加到<head>与</head>之间-->
+		<style type="text/css">
+			body {
+				margin: 0px;
+				padding: 0px;
+				background-color: black;
+			}
+			
+			.top {
+				width: 100%;
+				height: 25px;
+				background: #eeeeee;
+				border-bottom: 1px solid #dcdcdc;
+			}
+			
+			.box {
+				height: 300px;
+				position: absolute;
+				top: 20px;
+				width: 200px;
+				z-index: 10000;
+				-moz-transform: rotate(-3deg);
+				-moz-transform-origin: 50% 0;
+				-webkit-transform: rotate(-3deg);
+				-webkit-transform-origin: 50% 0;
+			}
+			
+			#left {
+				left: 125px;
+			}
+			
+			#right {
+				right: 125px;
+			}
+			
+			.ico {
+				display: inline;
+				margin-left: 25px;
+				bottom: 0;
+				height: 48px;
+				left: 0;
+				position: absolute;
+				width: 48px;
+				cursor: move;
+			}
+			
+			#Lico {
+				width: 50px;
+				height: auto;
+			}
+			
+			#Rico {
+				width: 50px;
+				height: auto;
+			}
+			
+			.solid {
+				display: inline;
+				margin-left: 10px;
+				background: none repeat scroll 0 0 #EEEEEE;
+				height: 240px;
+				left: 36px;
+				position: absolute;
+				top: 0;
+				width: 2px;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<!--把下面代码加到<body>与</body>之间-->
+		<div class="top"></div>
+		<div class="box" id="left" style="filter:progid:DXImageTransform.Microsoft.Matrix(SizingMethod=auto expand,FilterType=bilinear,M11=1,M12=-0.1,M21=0.1,M22=1);">
+			<div class="solid"></div>
+			<!--<div class="ico" id="Lico">--><img class="ico" id="Lico" src="img/28c0c9d652dd9298cfa629cbd9426177.png"/><!--</div>-->
+		</div>
+		<div class="box" id="right">
+			<div class="solid"></div>
+			<!--<div class="ico" id="Rico">--><img class="ico" id="Rico" src="img/28c0c9d652dd9298cfa629cbd9426177.png"/><!--</div>-->
+		</div>
+				<script type="text/javascript">
+			window.onload = function() {
+				var oLeft = document.getElementById('left');
+				var oRight = document.getElementById('right');
+				var ua = navigator.userAgent,
+					isIE = null;
+				var oLswitch = true;
+				var oRswitch = true;
+				var oLtimer = oRtimer = null;
+				if(/msie (\d+\.\d)/i.test(ua)) isIE = document.documentMode || +RegExp['\x241'];
+				if(isIE) {
+					var i = 0.001;
+					var j = 0.001;
+
+					function ieLeft() {
+						if(oLswitch) {
+							i = parseFloat(i + 0.002);
+							j = -parseFloat(j + 0.002);
+							if(i >= 0.1) oLswitch = false;
+						} else {
+							i = parseFloat(i - 0.002);
+							j = -parseFloat(j - 0.002);
+							if(i <= -0.05) oLswitch = true;
+						}
+						oLeft.style.filter = 'progid:DXImageTransform.Microsoft.Matrix(SizingMethod=auto expand,FilterType=bilinear,M11=1,M12=' + i + ',M21=' + j + ',M22=1)';
+					};
+
+					function ieRight() {
+						if(oRswitch) {
+							i = parseFloat(i + 0.002);
+							j = -parseFloat(j + 0.002);
+							if(i >= 0.1) oRswitch = false;
+						} else {
+							i = parseFloat(i - 0.002);
+							j = -parseFloat(j - 0.002);
+							if(i <= -0.05) oRswitch = true;
+						}
+						oRight.style.filter = 'progid:DXImageTransform.Microsoft.Matrix(SizingMethod=auto expand,FilterType=bilinear,M11=1,M12=' + i + ',M21=' + j + ',M22=1)';
+					};
+					oLtimer = setInterval(ieLeft, 30);
+					oRtimer = setInterval(ieRight, 30);
+				} else {
+					var i = 3;
+					var j = -3;
+
+					function left() {
+						if(oLswitch) {
+							i = i - 0.15;
+							if(i <= -3) oLswitch = false;
+						} else {
+							i = parseFloat(i + 0.15);
+							if(i == 3) oLswitch = true;
+						}
+						oLeft.style.MozTransform = 'rotate(' + i + 'deg)';
+						oLeft.style.WebkitTransform = 'rotate(' + i + 'deg)';
+					}
+
+					function right() {
+						if(oRswitch) {
+							j = parseFloat(j + 0.15);
+							if(j >= 3) oRswitch = false;
+						} else {
+							j = parseFloat(j - 0.15);
+							if(j <= -3) oRswitch = true;
+						}
+						oRight.style.MozTransform = 'rotate(' + j + 'deg)';
+						oRight.style.WebkitTransform = 'rotate(' + j + 'deg)';
+					}
+					oLtimer = setInterval(left, 30);
+					oRtimer = setInterval(right, 30);
+				}
+			};
+		</script>
+	</body>
+
+</html>
