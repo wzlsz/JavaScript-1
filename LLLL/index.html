@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			body{
+				color: white;
+				font-family: 'Petit Formal Script', cursive;
+                position: relative;
+			}
+			.snow{
+				position: absolute;
+				transform: translate(0,0);
+				background-color: white;
+				border-radius: 100%;
+			}
+			#snowing{
+				width: 500px;
+				height: 500px;
+				overflow: hidden;
+				border-radius: 100%;
+				position: absolute;
+				left: 0;
+				top: 700px;
+				bottom: 0;
+				right: 0;
+				margin: auto;
+				background: url(img/chengbao.png) no-repeat bottom;
+				background-color: black;
+				border: 1px solid #000;
+				box-shadow: 1px 2px 2px rgba(0,0,0,.8);
+			}
+		</style>
+	</head>
+	<body>
+			<div id="snowing"></div>
+		<script type="text/javascript">
+			(function(){
+				var snowing=document.getElementById("snowing");
+				var widW = snowing.offsetWidth;
+				var widH = snowing.offsetHeight;
+				var num = 300;
+				var snowA = new Array();
+				
+				function random(min, max, isInt){
+					var a=min + Math.random() * (max - min);
+					return isInt ? parseInt(a) : a;
+				}
+				function Snow(){
+					this.init();
+					this.draw();
+				}
+				Snow.prototype.init = function(){
+					this.x = random(0, widW, true);
+					this.y = random(-widH, 0, true);
+					this.speed = random(0.5, 3);
+					this.wind = random(-2, 2);
+					this.size = random(3, 6, true);
+					this.alpha = random(0.2, 1);
+				}
+				Snow.prototype.draw = function(){
+					this.o = document.createElement("div");
+					this.o.className = "snow";
+					var container = document.getElementById('snowing');
+
+					container.appendChild(this.o);
+					this.o.style.width = this.o.style.height=this.size + "px";
+					this.o.style.opacity = this.alpha;
+				}
+				Snow.prototype.update = function(){
+					this.x += this.wind;
+					this.y += this.speed;
+					if(this.y > widH){
+						this.init();
+					}
+					this.o.style.left = this.x+"px";
+					this.o.style.top = this.y+"px";
+				}
+				for(var i=0;i<num;i++){
+					var snow = new Snow();
+					snowA.push(snow);
+				}
+				(function(){
+					for(var i=0;i<snowA.length;i++){
+						snowA[i].update();
+					}
+					requestAnimationFrame(arguments.callee);
+				}());
+			}());
+			
+		</script>
+	</body>
+</html>
